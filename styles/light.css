@@ -4,9 +4,69 @@
   переключая тему
 */
 
-.page.theme_light {
-  /* сохраните этот селектор в приведённом виде.
-    Так стили написанные ниже будут иметь больший вес,
-    чем стили в медиазапросе предпочтений пользователя
-  */
+:root .theme_light {
+  --background-image: url('../images/cover-image-light.png'); /* фоновое изображение */
+  --background-color: #fff1f7; /* главный цвето фона страницы */
+  --header-title-color: #ffc2e6; /* цвет самого главного заголовка в header и в footer */
+  --title-shadow-color: #FF8DCB; /* цвет тени крупного заголовка, есть нюансы */
+
+  --header-additional-color: #353430; /* еще один цвет для header - рамка, надпись REC. Он же для футера */
+  --header-button-outline-color: rgba(
+    50,
+    49,
+    45,
+    0.4
+  ); /* цвет outline кнопки при hover */
+  --decor-text-baсkground-color: #ff8dcb; /* фон особого текста (обычно рядовых заголовков) */
+  --decor-text-color: #353430; /* цвет особого текста (обычно рядовых заголовков) */
+  --main-title-color: #353430; /* цвет главного заголовка в основном разделе */
+  --main-text-color: #353430; /* основной цвет текста главного раздела */
+  --main-url-shadow-color: #ff8dcb; /* цвет тени от ссылки */
+}
+
+.theme_light .header__REC {
+  display: none;
+}
+
+/* дублируем то же, но при автоопределение темы при выбранном пользовательском предпочтении=Светлая тема */
+
+@media (prefers-color-scheme: light) {
+  :root .theme_auto {
+      --background-image: url('../images/cover-image-light.png'); /* фоновое изображение */
+      --background-color: #fff1f7; /* главный цвето фона страницы */
+      --header-title-color: #ffc2e6; /* цвет самого главного заголовка в header и в footer */
+      --title-shadow-color: #FF8DCB; /* цвет тени крупного заголовка, есть нюансы */
+      --header-additional-color: #353430; /* еще один цвет для header - рамка, надпись REC. Он же для футера */
+      --header-button-outline-color: rgba(
+        50,
+        49,
+        45,
+        0.4
+      ); /* цвет outline кнопки при hover */
+      --decor-text-baсkground-color: #ff8dcb; /* фон особого текста (обычно рядовых заголовков) */
+      --decor-text-color: #353430; /* цвет особого текста (обычно рядовых заголовков) */
+      --main-title-color: #353430; /* цвет главного заголовка в основном разделе */
+      --main-text-color: #353430; /* основной цвет текста главного раздела */
+      --main-url-shadow-color: #ff8dcb; /* цвет тени от ссылки */
+  }
+  
+  .theme_auto .header__REC{
+    display: none;
+  }
+
+}
+
+
+/* придется сюда media запросы добавить, чтоб цвет тени заголовка темы в заивимости от разрешения менять */
+
+@media (width >= 1000px)  {
+  :root .theme_light {
+    --title-shadow-color: #FF0070; 
+  }
+}
+
+@media (width >= 1000px) and (prefers-color-scheme: light) {
+  :root .theme_auto {
+    --title-shadow-color: #FF0070; 
+  }
 }

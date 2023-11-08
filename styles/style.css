@@ -1,5 +1,368 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
 
+/* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
 .page {
-  /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
+  display: grid;
+  gap: var(--section-gap, 50px);
+  color: var(--main-text-color, #f1b2ce);
+  font-family: var(--font-family, "IBM Plex Mono", Arial, serif);
+  font-weight: 400;
+  font-size: var(--font-size, 18px);
+  font-style: normal;
+  line-height: var(--line-height, 1.3);
+  background-color: var(--background-color, #000028);
+  background-image: var(
+    --background-image,
+    url("../images/cover-image-dark.png")
+  );
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
+  height: calc(
+    100vh - calc(var(--margin-page, 10px) * 2)
+  ); /* вычитаем верхние и нижние поля*/
+  margin: var(--margin-page, 10px) var(--margin-page, 10px) 0;
+}
+
+/* особое оформление header и footer */
+.decorated-zone {
+  position: relative;
+}
+
+/* рамка в правом верхнем углу */
+.decorated-zone::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 25px;
+  height: 25px;
+  border-inline-end: 1px solid var(--header-additional-color, #ff0070);
+  border-block-start: 1px solid var(--header-additional-color, #ff0070);
+}
+
+/* рамка в левом нижнем углу */
+.decorated-zone::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 25px;
+  height: 25px;
+  border-inline-start: 1px solid var(--header-additional-color, #ff0070);
+  border-block-end: 1px solid var(--header-additional-color, #ff0070);
+}
+
+.header__REC {
+  position: absolute;
+  top: 0;
+  right: 0.18em;
+  z-index: -1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--header-additional-color, #ff0070);
+  line-height: 1.38889;
+}
+
+.header__REC-point {
+  display: inline-block;
+}
+
+.header__theme-menu {
+  place-self: end;
+  align-self: center;
+}
+
+.header__theme-menu-list {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--menu-gap, 10px);
+}
+
+.header__theme-menu-button {
+  width: 70px;
+  border: none;
+  padding-block-end: calc(
+    1em / 4
+  ); /* из-за line-height=1 пришлось опытным путем увеличивать */
+  color: var(--header-additional-color, #ff0070);
+  font-family: var(
+    --font-family,
+    "IBM Plex Mono",
+    Arial,
+    serif
+  ); /* важно прописать, т.к. FireFox для кнопок пытается по-умолчанию все поставить */
+  font-weight: 400;
+  font-size: var(--font-size, 18px);
+  font-style: normal;
+  line-height: 1;
+  text-transform: lowercase;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.header__theme-menu-button:focus-visible {
+  border-block-end: 1px solid var(--header-additional-color, #ff0070);
+}
+
+.header__theme-menu-button:hover {
+  outline: 1px solid var(--header-button-outline-color, rgba(255, 0, 112, 0.4));
+}
+
+.header__theme-menu-button_active {
+  border: 1px solid var(--header-additional-color, #ff0070);
+  pointer-events: none;
+}
+
+.header__title {
+  color: var(--header-title-color, #db00ff);
+  font-weight: 700;
+  font-size: 116px;
+  font-style: normal;
+  line-height: 0.825;
+  text-shadow: 4px 4px 0px var(--title-shadow-color, #ff0070);
+}
+
+/* универсальное оформление особого текста (в основном рядовых заголовков ) */
+.title-decor {
+  color: var(--decor-text-color, #000028);
+  font-size: var(--font-size, 18px);
+  background-color: var(--decor-text-baсkground-color, #ff0070);
+}
+
+.header__text {
+  display: inline-block;
+  justify-self: end;
+  align-self: center;
+  font-weight: 700;
+  font-style: normal;
+  max-inline-size: 364px;
+}
+
+/* основная часть */
+
+.main {
+  display: grid;
+  gap: var(--section-gap, 50px);
+  margin: 0 var(--margin-page, 10px) 0;
+}
+
+.main__section1,
+.main__section2,
+.main__section3 {
+  display: grid;
+  gap: var(--subsection-gap, 20px);
+}
+
+.main__section1-title,
+.main__section2-title,
+.main__section3-title {
+  color: var(--main-title-color, #ff0070);
+  font-weight: 700;
+  font-size: var(--font-size, 18px);
+}
+
+.main__section1-articles,
+.main__section2-articles,
+.main__section3-content {
+  display: grid;
+  gap: var(--subsection-gap, 20px);
+}
+
+.article {
+  display: grid;
+  gap: var(--article-title-text-gap, 10px);
+}
+
+.main__article-text {
+  color: var(--main-text-color, #f1b2ce);
+}
+
+.main__article-text a {
+  text-decoration: none;
+  text-shadow: 1px 1px 0 var(--main-url-shadow-color, #ff0070);
+}
+
+.main__article-text a:hover {
+  text-decoration: underline;
+}
+
+.main__article-text a:focus-visible {
+  outline: 1px solid var(--main-text-color, #f1b2ce);
+}
+
+.main__section1-article-title,
+.main__section2-article-title,
+.main__section3-article-title {
+  font-weight: 700;
+  font-size: var(--font-size, 18px); /* нужно т.к. заголовки переопределить */
+  font-style: normal;
+}
+
+.main__section3-article-title {
+  font-weight: 400; /* в последней секции у заголовков статей шрифт нежирный */
+}
+
+.main__section3-subtitle {
+  font-weight: 700;
+  font-size: var(--font-size, 18px);
+  font-style: normal;
+}
+
+/* Галерея */
+
+.main__gallery {
+  display: grid;
+  gap: var(--margin-page, 10px);
+}
+
+.main__gallery-content {
+  display: grid;
+  gap: var(--margin-page, 10px);
+  font-size: 0; /* необходимо, чтобы <li> сам не рисовал отступы */
+}
+
+.main__gallery-content-image {
+  width: 100%;
+}
+
+/* footer */
+
+.footer {
+  display: grid;
+  height: calc(100vh - calc(var(--margin-page, 10px) * 2));
+  margin: 0 var(--margin-page, 10px) var(--margin-page, 10px);
+}
+
+.footer__title {
+  place-self: center;
+  align-self: center;
+  color: var(--header-title-color, #db00ff);
+  font-weight: 700;
+  font-size: 116px;
+  font-style: normal;
+  line-height: 0.825;
+  text-shadow: 2px 2px 0px var(--title-shadow-color, #ff0070);
+}
+
+/* ширина >=600 считаем планшетом */
+
+@media (width >= 600px) {
+  :root {
+    --margin-page: 20px;
+    --section-gap: 80px; /* расстояния между секциями */
+  }
+
+  .header__title {
+    position: relative;
+    font-size: 120px;
+    inset-block-start: 0;
+    inset-inline-end: var(--margin-page, 10px); /* сдвигаем надпись вправо */
+  }
+
+  .header__text {
+    max-inline-size: 364px;
+  }
+
+  .main__section1,
+  .main__section3 {
+    display: grid;
+    grid-template-columns: calc((100% - var(--subsection-gap, 20px)) / 3) 1fr;
+  }
+
+  .main__section2-title {
+    display: inline-block;
+    width: calc((100% - var(--subsection-gap, 20px)) / 3);
+  }
+
+  .main__gallery-content {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "sunset sunset icecream"
+      "tape books icecream"
+      "tape street street";
+  }
+
+  .main__gallery-content-image {
+    height: 100%;
+    object-fit: cover;
+  }
+  .img-sunset {
+    grid-area: sunset;
+  }
+  .img-icecream {
+    grid-area: icecream;
+  }
+  .img-tape {
+    grid-area: tape;
+  }
+  .img-books {
+    grid-area: books;
+  }
+  .img-street {
+    grid-area: street;
+  }
+
+  .footer__title {
+    font-size: 120px;
+  }
+}
+
+/* ширина >= 1000 считаем DeskTop */
+
+@media (width >= 1000px) {
+  .header__theme-menu {
+    place-self: center;
+    align-self: start;
+  }
+
+  .header__theme-menu-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .header__title {
+    font-size: 157px;
+  }
+
+  .header__text {
+    max-inline-size: 491px;
+  }
+
+  .main__section1,
+  .main__section3 {
+    grid-template-columns: calc((100% - 2 * var(--subsection-gap, 20px)) / 3) 1fr;
+  }
+
+  .main__section2-articles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer__title {
+    font-size: 157px;
+  }
+}
+
+/* clamp при переходах */
+
+@media (375px < width < 768px) {
+  .header__title,
+  .footer__title {
+    font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  }
+}
+
+@media (768px < width < 1024px) {
+  .header__title,
+  .footer__title {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
 }
