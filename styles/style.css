@@ -3,7 +3,7 @@
 /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
 .page {
   display: grid;
-  gap: var(--section-gap, 50px);
+  gap: calc( var(--section-gap, 50px) - var(--margin-page, 10px));
   color: var(--main-text-color, #f1b2ce);
   font-family: var(--font-family, "IBM Plex Mono", Arial, serif);
   font-weight: 400;
@@ -24,10 +24,9 @@
 .header {
   display: grid;
   grid-template-rows: 1fr min-content 1fr;
-  height: calc(
-    100vh - calc(var(--margin-page, 10px) * 2)
-  ); /* вычитаем верхние и нижние поля*/
-  margin: var(--margin-page, 10px) var(--margin-page, 10px) 0;
+  height: 100vh; /* вычитаем верхние и нижние поля*/
+  margin: 0 var(--margin-page, 10px) 0;
+  padding: var(--margin-page, 10px) 0;
 }
 
 /* особое оформление header и footer */
@@ -39,7 +38,7 @@
 .decorated-zone::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: var(--margin-page, 10px);
   right: 0;
   display: block;
   width: 25px;
@@ -52,7 +51,7 @@
 .decorated-zone::after {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: var(--margin-page, 10px);
   left: 0;
   display: block;
   width: 25px;
@@ -63,7 +62,7 @@
 
 .header__REC {
   position: absolute;
-  top: 0;
+  top: var(--margin-page, 10px);
   right: 0.18em;
   z-index: -1;
   display: flex;
@@ -145,7 +144,7 @@
   align-self: center;
   font-weight: 700;
   font-style: normal;
-  max-inline-size: 364px;
+  /*max-inline-size: 355px;*/
 }
 
 /* основная часть */
@@ -238,12 +237,15 @@
 /* footer */
 
 .footer {
+  position: relative;
   display: grid;
-  height: calc(100vh - calc(var(--margin-page, 10px) * 2));
-  margin: 0 var(--margin-page, 10px) var(--margin-page, 10px);
+  height: 100vh;
+  margin: 0 var(--margin-page, 10px) 0;
+  /*padding-top: var(--margin-page, 10px);*/
 }
 
 .footer__title {
+  display: inline-block;
   place-self: center;
   align-self: center;
   color: var(--header-title-color, #db00ff);
@@ -352,7 +354,6 @@
 }
 
 /* clamp при переходах */
-
 @media (375px < width < 768px) {
   .header__title,
   .footer__title {

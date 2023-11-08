@@ -4,7 +4,7 @@
   переключая тему
 */
 
-:root .theme_light {
+.page.theme_light {
   --background-image: url('../images/cover-image-light.png'); /* фоновое изображение */
   --background-color: #fff1f7; /* главный цвето фона страницы */
   --header-title-color: #ffc2e6; /* цвет самого главного заголовка в header и в footer */
@@ -31,7 +31,7 @@
 /* дублируем то же, но при автоопределение темы при выбранном пользовательском предпочтении=Светлая тема */
 
 @media (prefers-color-scheme: light) {
-  :root .theme_auto {
+  .page {
       --background-image: url('../images/cover-image-light.png'); /* фоновое изображение */
       --background-color: #fff1f7; /* главный цвето фона страницы */
       --header-title-color: #ffc2e6; /* цвет самого главного заголовка в header и в footer */
@@ -50,7 +50,7 @@
       --main-url-shadow-color: #ff8dcb; /* цвет тени от ссылки */
   }
   
-  .theme_auto .header__REC{
+  .header__REC {
     display: none;
   }
 
@@ -59,14 +59,14 @@
 
 /* придется сюда media запросы добавить, чтоб цвет тени заголовка темы в заивимости от разрешения менять */
 
-@media (width >= 1000px)  {
+@media (width >= 1000px) {
   :root .theme_light {
     --title-shadow-color: #FF0070; 
-  }
+}
 }
 
 @media (width >= 1000px) and (prefers-color-scheme: light) {
   :root .theme_auto {
     --title-shadow-color: #FF0070; 
-  }
+}
 }
