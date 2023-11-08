@@ -56,17 +56,16 @@
 
 }
 
-
 /* придется сюда media запросы добавить, чтоб цвет тени заголовка темы в заивимости от разрешения менять */
 
 @media (width >= 1000px) {
-  :root .theme_light {
-    --title-shadow-color: #FF0070; 
-}
+  .page.theme_light {
+    --title-shadow-color: #FF0070;
+  }
 }
 
 @media (width >= 1000px) and (prefers-color-scheme: light) {
-  :root .theme_auto {
-    --title-shadow-color: #FF0070; 
-}
+  .page {
+    --title-shadow-color: #FF0070;
+  }
 }
