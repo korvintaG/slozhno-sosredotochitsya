@@ -2,8 +2,6 @@
 
 /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
 .page {
-  display: grid;
-  gap: calc( var(--section-gap, 50px) - var(--margin-page, 10px));
   color: var(--main-text-color, #f1b2ce);
   font-family: var(--font-family, "IBM Plex Mono", Arial, serif);
   font-weight: 400;
@@ -24,9 +22,11 @@
 .header {
   display: grid;
   grid-template-rows: 1fr min-content 1fr;
-  height: 100vh; /* вычитаем верхние и нижние поля*/
-  margin: 0 var(--margin-page, 10px) 0;
+  margin: 0 var(--margin-page, 10px)
+    calc(var(--section-gap, 50px) - var(--margin-page, 10px));
   padding: var(--margin-page, 10px) 0;
+  min-block-size: 668px;
+  block-size: 100vh; /* вычитаем верхние и нижние поля*/
 }
 
 /* особое оформление header и footer */
@@ -38,42 +38,42 @@
 .decorated-zone::before {
   content: "";
   position: absolute;
-  top: var(--margin-page, 10px);
-  right: 0;
-  display: block;
-  width: 25px;
-  height: 25px;
+  display: flexbox;
   border-inline-end: 1px solid var(--header-additional-color, #ff0070);
   border-block-start: 1px solid var(--header-additional-color, #ff0070);
+  inset-block-start: var(--margin-page, 10px);
+  inset-inline-end: 0;
+  inline-size: 25px;
+  block-size: 25px;
 }
 
 /* рамка в левом нижнем углу */
 .decorated-zone::after {
   content: "";
   position: absolute;
-  bottom: var(--margin-page, 10px);
-  left: 0;
-  display: block;
-  width: 25px;
-  height: 25px;
+  display: flexbox;
   border-inline-start: 1px solid var(--header-additional-color, #ff0070);
   border-block-end: 1px solid var(--header-additional-color, #ff0070);
+  inset-block-end: var(--margin-page, 10px);
+  inset-inline-start: 0;
+  inline-size: 25px;
+  block-size: 25px;
 }
 
 .header__REC {
   position: absolute;
-  top: var(--margin-page, 10px);
-  right: 0.18em;
   z-index: -1;
-  display: flex;
+  display: var(--REC-display, flex);
   align-items: center;
   gap: 4px;
   color: var(--header-additional-color, #ff0070);
   line-height: 1.38889;
+  inset-block-start: var(--margin-page, 10px);
+  inset-inline-end: 0.18em;
 }
 
 .header__REC-point {
-  display: inline-block;
+  display: flexbox;
 }
 
 .header__theme-menu {
@@ -88,7 +88,6 @@
 }
 
 .header__theme-menu-button {
-  width: 70px;
   border: none;
   padding-block-end: calc(
     1em / 4
@@ -107,6 +106,7 @@
   text-transform: lowercase;
   background-color: transparent;
   cursor: pointer;
+  inline-size: 70px;
 }
 
 .header__theme-menu-button:focus-visible {
@@ -131,6 +131,14 @@
   text-shadow: 4px 4px 0px var(--title-shadow-color, #ff0070);
 }
 
+.header__text {
+  display: flexbox;
+  justify-self: end;
+  align-self: center;
+  font-weight: 700;
+  font-style: normal;
+}
+
 /* универсальное оформление особого текста (в основном рядовых заголовков ) */
 .title-decor {
   color: var(--decor-text-color, #000028);
@@ -138,21 +146,13 @@
   background-color: var(--decor-text-baсkground-color, #ff0070);
 }
 
-.header__text {
-  display: inline-block;
-  justify-self: end;
-  align-self: center;
-  font-weight: 700;
-  font-style: normal;
-  /*max-inline-size: 355px;*/
-}
-
 /* основная часть */
 
 .main {
   display: grid;
   gap: var(--section-gap, 50px);
-  margin: 0 var(--margin-page, 10px) 0;
+  margin: 0 var(--margin-page, 10px)
+    calc(var(--section-gap, 50px) - var(--margin-page, 10px));
 }
 
 .main__section1,
@@ -172,7 +172,8 @@
 
 .main__section1-articles,
 .main__section2-articles,
-.main__section3-content {
+.main__section3-content,
+.main__section3-list {
   display: grid;
   gap: var(--subsection-gap, 20px);
 }
@@ -182,29 +183,29 @@
   gap: var(--article-title-text-gap, 10px);
 }
 
-.main__article-text {
-  color: var(--main-text-color, #f1b2ce);
-}
-
-.main__article-text a {
-  text-decoration: none;
-  text-shadow: 1px 1px 0 var(--main-url-shadow-color, #ff0070);
-}
-
-.main__article-text a:hover {
-  text-decoration: underline;
-}
-
-.main__article-text a:focus-visible {
-  outline: 1px solid var(--main-text-color, #f1b2ce);
-}
-
 .main__section1-article-title,
 .main__section2-article-title,
 .main__section3-article-title {
   font-weight: 700;
   font-size: var(--font-size, 18px); /* нужно т.к. заголовки переопределить */
   font-style: normal;
+}
+
+.main__article-text {
+  color: var(--main-text-color, #f1b2ce);
+}
+
+.main__article-text a {
+  text-decoration: none;
+  text-shadow: 2px 2px 0 var(--main-url-shadow-color, #ff0070);
+}
+
+.main__article-text a:hover {
+  border-block-end: 1px solid var(--main-text-color, #f1b2ce);
+}
+
+.main__article-text a:focus-visible {
+  outline: 1px solid var(--main-text-color, #f1b2ce);
 }
 
 .main__section3-article-title {
@@ -231,7 +232,7 @@
 }
 
 .main__gallery-content-image {
-  width: 100%;
+  inline-size: 100%;
 }
 
 /* footer */
@@ -239,13 +240,13 @@
 .footer {
   position: relative;
   display: grid;
-  height: 100vh;
   margin: 0 var(--margin-page, 10px) 0;
-  /*padding-top: var(--margin-page, 10px);*/
+  min-block-size: 668px;
+  block-size: 100vh;
 }
 
 .footer__title {
-  display: inline-block;
+  display: flexbox;
   place-self: center;
   align-self: center;
   color: var(--header-title-color, #db00ff);
@@ -282,8 +283,8 @@
   }
 
   .main__section2-title {
-    display: inline-block;
-    width: calc((100% - var(--subsection-gap, 20px)) / 3);
+    display: flexbox;
+    inline-size: calc((100% - var(--subsection-gap, 20px)) / 3);
   }
 
   .main__gallery-content {
@@ -295,21 +296,27 @@
   }
 
   .main__gallery-content-image {
-    height: 100%;
     object-fit: cover;
+    object-position: center;
+    block-size: 100%;
   }
+
   .img-sunset {
     grid-area: sunset;
   }
+
   .img-icecream {
     grid-area: icecream;
   }
+
   .img-tape {
     grid-area: tape;
   }
+
   .img-books {
     grid-area: books;
   }
+
   .img-street {
     grid-area: street;
   }

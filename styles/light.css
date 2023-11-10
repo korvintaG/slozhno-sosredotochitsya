@@ -5,10 +5,10 @@
 */
 
 .page.theme_light {
-  --background-image: url('../images/cover-image-light.png'); /* фоновое изображение */
+  --background-image: url("../images/cover-image-light.png"); /* фоновое изображение */
   --background-color: #fff1f7; /* главный цвето фона страницы */
   --header-title-color: #ffc2e6; /* цвет самого главного заголовка в header и в footer */
-  --title-shadow-color: #FF8DCB; /* цвет тени крупного заголовка, есть нюансы */
+  --title-shadow-color: #ff8dcb; /* цвет тени крупного заголовка, есть нюансы */
 
   --header-additional-color: #353430; /* еще один цвет для header - рамка, надпись REC. Он же для футера */
   --header-button-outline-color: rgba(
@@ -22,50 +22,43 @@
   --main-title-color: #353430; /* цвет главного заголовка в основном разделе */
   --main-text-color: #353430; /* основной цвет текста главного раздела */
   --main-url-shadow-color: #ff8dcb; /* цвет тени от ссылки */
-}
-
-.theme_light .header__REC {
-  display: none;
+  --REC-display: none; /* показывать ли надпись REC* */
 }
 
 /* дублируем то же, но при автоопределение темы при выбранном пользовательском предпочтении=Светлая тема */
 
 @media (prefers-color-scheme: light) {
   .page {
-      --background-image: url('../images/cover-image-light.png'); /* фоновое изображение */
-      --background-color: #fff1f7; /* главный цвето фона страницы */
-      --header-title-color: #ffc2e6; /* цвет самого главного заголовка в header и в footer */
-      --title-shadow-color: #FF8DCB; /* цвет тени крупного заголовка, есть нюансы */
-      --header-additional-color: #353430; /* еще один цвет для header - рамка, надпись REC. Он же для футера */
-      --header-button-outline-color: rgba(
-        50,
-        49,
-        45,
-        0.4
-      ); /* цвет outline кнопки при hover */
-      --decor-text-baсkground-color: #ff8dcb; /* фон особого текста (обычно рядовых заголовков) */
-      --decor-text-color: #353430; /* цвет особого текста (обычно рядовых заголовков) */
-      --main-title-color: #353430; /* цвет главного заголовка в основном разделе */
-      --main-text-color: #353430; /* основной цвет текста главного раздела */
-      --main-url-shadow-color: #ff8dcb; /* цвет тени от ссылки */
+    --background-image: url("../images/cover-image-light.png"); /* фоновое изображение */
+    --background-color: #fff1f7; /* главный цвето фона страницы */
+    --header-title-color: #ffc2e6; /* цвет самого главного заголовка в header и в footer */
+    --title-shadow-color: #ff8dcb; /* цвет тени крупного заголовка, есть нюансы */
+    --header-additional-color: #353430; /* еще один цвет для header - рамка, надпись REC. Он же для футера */
+    --header-button-outline-color: rgba(
+      50,
+      49,
+      45,
+      0.4
+    ); /* цвет outline кнопки при hover */
+    --decor-text-baсkground-color: #ff8dcb; /* фон особого текста (обычно рядовых заголовков) */
+    --decor-text-color: #353430; /* цвет особого текста (обычно рядовых заголовков) */
+    --main-title-color: #353430; /* цвет главного заголовка в основном разделе */
+    --main-text-color: #353430; /* основной цвет текста главного раздела */
+    --main-url-shadow-color: #ff8dcb; /* цвет тени от ссылки */
+    --REC-display: none; /* показывать ли надпись REC* */
   }
-  
-  .header__REC {
-    display: none;
-  }
-
 }
 
 /* придется сюда media запросы добавить, чтоб цвет тени заголовка темы в заивимости от разрешения менять */
 
 @media (width >= 1000px) {
   .page.theme_light {
-    --title-shadow-color: #FF0070;
+    --title-shadow-color: #ff0070;
   }
 }
 
 @media (width >= 1000px) and (prefers-color-scheme: light) {
   .page {
-    --title-shadow-color: #FF0070;
+    --title-shadow-color: #ff0070;
   }
 }
